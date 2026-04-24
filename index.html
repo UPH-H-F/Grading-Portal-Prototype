@@ -20,9 +20,17 @@
     </script>
 
     <style>
+        /* Removing number arrows for cleaner inputs */
         input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type="number"] { -moz-appearance: textfield; }
+        input[type="number"]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            appearance: none; /* Added to satisfy VS Code */
+            margin: 0; 
+        }
+        input[type="number"] { 
+            -moz-appearance: textfield; 
+            appearance: textfield; /* Added to satisfy VS Code */
+        }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 10px; }

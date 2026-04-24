@@ -9,6 +9,16 @@
     
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+        "lucide-react": "https://esm.sh/lucide-react@0.292.0?external=react"
+      }
+    }
+    </script>
+
     <style>
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
@@ -23,18 +33,21 @@
     <div id="root"></div>
 
     <script type="text/babel" data-type="module">
-        import React, { useState } from 'https://esm.sh/react@18';
-        import { createRoot } from 'https://esm.sh/react-dom@18/client';
+        import React, { useState } from 'react';
+        import { createRoot } from 'react-dom/client';
         import { 
           Lock, HelpCircle, ShieldCheck, ArrowRight, LogOut, UserCircle,
           LayoutDashboard, Search, List, LayoutGrid, Edit, Key, AlertTriangle,
           CheckCircle, Info, Users, UserPlus, Shield, Activity, GraduationCap,
           BookOpen, Calculator, ChevronRight, Save, FileSpreadsheet, CheckSquare
-        } from 'https://esm.sh/lucide-react';
+        } from 'lucide-react';
 
+        // ==========================================
+        // --- MOCK DATA & THEME ---
+        // ==========================================
         const THEME = {
-          primary: '#800000',
-          accent: '#FFD700',
+          primary: '#800000', 
+          accent: '#FFD700',  
           background: '#f8f9fa',
         };
 
@@ -42,6 +55,11 @@
           { id: 'ADM-0921', name: 'Avery Anderson', role: 'Admin', department: 'System Administration', status: 'Active', avatar: 'https://i.pravatar.cc/150?u=avery' },
           { id: 'SUP-5543', name: 'Elias Jensen', role: 'Supervisor', department: 'Engineering', status: 'Active', avatar: 'https://i.pravatar.cc/150?u=elias' },
           { id: 'FAC-8821', name: 'Bennett Chen', role: 'Faculty', department: 'Computer Science', status: 'Active', avatar: 'https://i.pravatar.cc/150?u=bennett' },
+          { id: 'FAC-7301', name: 'Marcus Tso', role: 'Faculty', department: 'Software Engineering', status: 'Inactive', avatar: 'https://i.pravatar.cc/150?u=marcus' },
+          { id: 'STU-9482', name: 'Julian Alverez', role: 'Student', department: 'Faculty of Sciences', status: 'Active', avatar: 'https://i.pravatar.cc/150?u=julian' },
+          { id: 'STU-8821', name: 'Elena Rostova', role: 'Student', department: 'Humanities', status: 'Active', avatar: 'https://i.pravatar.cc/150?u=elena' },
+          { id: 'STU-1093', name: 'Daria Mikhailova', role: 'Student', department: 'Psychology', status: 'Active', avatar: 'https://i.pravatar.cc/150?u=daria' },
+          { id: 'STU-6193', name: 'Sophia Garcia', role: 'Student', department: 'MD Surgery', status: 'Active', avatar: 'https://i.pravatar.cc/150?u=sophia' }
         ];
 
         const MOCK_STUDENTS = [
@@ -49,6 +67,10 @@
           { id: '882194C', name: 'Elena Rostova', program: 'MA Comparative Literature', yearLevel: 'Graduate (Year 1)', department: 'Humanities', avatar: 'https://i.pravatar.cc/150?u=elena' },
           { id: '109384B', name: 'Marcus Lin', program: 'BArch. Architecture', yearLevel: 'Junior (Year 3)', department: 'School of Design', avatar: 'https://i.pravatar.cc/150?u=marcus' },
           { id: '554329D', name: 'Sarah Jenkins', program: 'BSc. Computer Science', yearLevel: 'Sophomore (Year 2)', department: 'Engineering', avatar: 'https://i.pravatar.cc/150?u=sarah' },
+          { id: '952140A', name: 'Liam Smith', program: 'BSc. Mathematics', yearLevel: 'Freshman (Year 1)', department: 'Faculty of Sciences', avatar: 'https://i.pravatar.cc/150?u=liam' },
+          { id: '837462B', name: 'James O\'Connor', program: 'BA English Literature', yearLevel: 'Senior (Year 4)', department: 'Humanities', avatar: 'https://i.pravatar.cc/150?u=james' },
+          { id: '726354C', name: 'David Chen', program: 'BSc. Information Technology', yearLevel: 'Junior (Year 3)', department: 'Computer Science', avatar: 'https://i.pravatar.cc/150?u=david' },
+          { id: '841295B', name: 'Chloe Bennett', program: 'BA History', yearLevel: 'Sophomore (Year 2)', department: 'Humanities', avatar: 'https://i.pravatar.cc/150?u=chloe' },
         ];
 
         const MOCK_GRADES = MOCK_STUDENTS.map(student => ({
@@ -77,6 +99,9 @@
           }
         }));
 
+        // ==========================================
+        // --- COMPONENTS ---
+        // ==========================================
         const LoginPage = ({ onLogin }) => {
           const [id, setId] = useState('');
           const [password, setPassword] = useState('');
@@ -144,14 +169,9 @@
                       <p className="text-xs text-center text-gray-400 font-semibold uppercase tracking-wider mb-4">Developer Bypass (Testing Only)</p>
                       <div className="grid grid-cols-1 gap-2">
                         <button onClick={() => onLogin({ name: 'Dr. Thomas Tance', role: 'Admin', id: 'ADM-001' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Admin</button>
-                        <button onClick={() => onLogin({ name: 'Prof. Mary Sue', role: 'Faculty', id: 'FAC-882' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Faculty</button>
-                        <button onClick={() => onLogin({ name: 'Dr. Elias Jensen', role: 'Supervisor', id: 'SUP-554' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Supervisor</button>
+                        <button onClick={() => onLogin({ name: 'Prof. Homer T. Favenir', role: 'Faculty', id: 'FAC-882' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Faculty</button>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-gray-50 p-4 border-t border-gray-100 flex items-center justify-center gap-2">
-                    <ShieldCheck className="text-green-600" size={16} />
-                    <span className="text-xs text-gray-500 font-medium">Encryption Secure TLS 1.3</span>
                   </div>
                 </div>
               </main>
@@ -733,7 +753,8 @@
           </div>
         );
 
-        export default function App() {
+        // --- MAIN APP RENDERER ---
+        function App() {
           const [currentUser, setCurrentUser] = useState(null);
           const [currentPage, setCurrentPage] = useState('login');
 

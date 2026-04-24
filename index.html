@@ -103,81 +103,95 @@
         // --- COMPONENTS ---
         // ==========================================
         const LoginPage = ({ onLogin }) => {
-          const [id, setId] = useState('');
-          const [password, setPassword] = useState('');
+        const [id, setId] = useState('');
+        const [password, setPassword] = useState('');
 
-          const handleManualLogin = (e) => {
-            e.preventDefault();
-            onLogin({ name: 'Prof. Homer T. Favenir', role: 'Faculty', id: id || 'FAC-001' });
-          };
+        const handleManualLogin = (e) => {
+          e.preventDefault();
+          onLogin({ name: 'Prof. Homer T. Favenir', role: 'Faculty', id: id || 'FAC-001' });
+        };
 
-          return (
-            <div className="min-h-screen flex flex-col bg-[#fff8f5] font-sans selection:bg-[#800000] selection:text-white">
-              <header className="flex justify-between items-center px-8 h-16 w-full fixed top-0 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50">
-                <div className="flex items-center gap-4">
-                  <ShieldCheck className="text-[#800000]" size={28} />
-                  <h1 className="font-bold text-xl tracking-tight text-[#1e1b18]">Institutional Portal</h1>
-                </div>
-                <div className="flex items-center gap-6">
-                  <a href="#" className="text-sm font-semibold text-[#800000] border-b-2 border-[#FFD700] pb-1">Portal Home</a>
-                  <HelpCircle className="text-gray-600 cursor-pointer hover:text-[#800000] transition-colors" size={24} />
-                </div>
-              </header>
+        return (
+          <div className="min-h-screen flex flex-col bg-[#fff8f5] font-sans selection:bg-[#800000] selection:text-white">
+            <header className="flex justify-between items-center px-8 h-16 w-full fixed top-0 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50">
+              <div className="flex items-center gap-4">
+                <ShieldCheck className="text-[#800000]" size={28} />
+                <h1 className="font-bold text-xl tracking-tight text-[#1e1b18]">Institutional Portal</h1>
+              </div>
+              <div className="flex items-center gap-6">
+                <a href="#" className="text-sm font-semibold text-[#800000] border-b-2 border-[#FFD700] pb-1">Portal Home</a>
+                <HelpCircle className="text-gray-600 cursor-pointer hover:text-[#800000] transition-colors" size={24} />
+              </div>
+            </header>
 
-              <main className="flex-grow flex items-center justify-center p-6 mt-16">
-                <div className="bg-white rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.05)] w-full max-w-[440px] overflow-hidden border-t-4 border-t-[#800000]">
-                  <div className="p-8 md:p-10">
-                    <div className="flex justify-center mb-6">
-                      <Lock className="text-[#800000]" size={48} />
+            <main className="flex-grow flex items-center justify-center p-6 mt-16">
+              <div className="bg-white rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.05)] w-full max-w-[440px] overflow-hidden border-t-4 border-t-[#800000]">
+                <div className="p-8 md:p-10">
+                  <div className="flex justify-center mb-6">
+                    <Lock className="text-[#800000]" size={48} />
+                  </div>
+                  
+                  <h2 className="text-2xl font-bold text-center text-[#1e1b18] mb-2 tracking-tight">Secure Sign In</h2>
+                  <p className="text-center text-sm text-gray-500 mb-8">Access your institutional workspace and credentials.</p>
+
+                  <form onSubmit={handleManualLogin} className="space-y-6">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Institutional ID</label>
+                      <input 
+                        type="text" 
+                        value={id}
+                        onChange={(e) => setId(e.target.value)}
+                        className="w-full h-12 px-4 border border-gray-300 rounded focus:border-[#800000] focus:ring-2 focus:ring-[#800000]/20 outline-none transition-all"
+                        placeholder="Enter ID number"
+                      />
                     </div>
-                    
-                    <h2 className="text-2xl font-bold text-center text-[#1e1b18] mb-2 tracking-tight">Secure Sign In</h2>
-                    <p className="text-center text-sm text-gray-500 mb-8">Access your institutional workspace and credentials.</p>
 
-                    <form onSubmit={handleManualLogin} className="space-y-6">
-                      <div>
-                        <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Institutional ID</label>
-                        <input 
-                          type="text" 
-                          value={id}
-                          onChange={(e) => setId(e.target.value)}
-                          className="w-full h-12 px-4 border border-gray-300 rounded focus:border-[#800000] focus:ring-2 focus:ring-[#800000]/20 outline-none transition-all"
-                          placeholder="Enter ID number"
-                        />
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider">Password</label>
+                        <a href="#" className="text-xs text-[#800000] hover:underline font-semibold">Forgot Password?</a>
                       </div>
+                      <input 
+                        type="password" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full h-12 px-4 border border-gray-300 rounded focus:border-[#800000] focus:ring-2 focus:ring-[#800000]/20 outline-none transition-all"
+                        placeholder="••••••••"
+                      />
+                    </div>
 
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider">Password</label>
-                          <a href="#" className="text-xs text-[#800000] hover:underline font-semibold">Forgot Password?</a>
-                        </div>
-                        <input 
-                          type="password" 
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          className="w-full h-12 px-4 border border-gray-300 rounded focus:border-[#800000] focus:ring-2 focus:ring-[#800000]/20 outline-none transition-all"
-                          placeholder="••••••••"
-                        />
-                      </div>
+                    <button type="submit" className="w-full bg-[#800000] text-white font-bold h-12 rounded hover:bg-[#600000] active:scale-[0.98] transition-all flex justify-center items-center gap-2">
+                      AUTHORIZE ENTRY <ArrowRight size={18} />
+                    </button>
+                  </form>
 
-                      <button type="submit" className="w-full bg-[#800000] text-white font-bold h-12 rounded hover:bg-[#600000] active:scale-[0.98] transition-all flex justify-center items-center gap-2">
-                        AUTHORIZE ENTRY <ArrowRight size={18} />
-                      </button>
-                    </form>
-
-                    <div className="mt-8 pt-6 border-t border-gray-100">
-                      <p className="text-xs text-center text-gray-400 font-semibold uppercase tracking-wider mb-4">Developer Bypass (Testing Only)</p>
-                      <div className="grid grid-cols-1 gap-2">
-                        <button onClick={() => onLogin({ name: 'Dr. Thomas Tance', role: 'Admin', id: 'ADM-001' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Admin</button>
-                        <button onClick={() => onLogin({ name: 'Prof. Homer T. Favenir', role: 'Faculty', id: 'FAC-882' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Faculty</button>
-                      </div>
+                  <div className="mt-8 pt-6 border-t border-gray-100">
+                    <p className="text-xs text-center text-gray-400 font-semibold uppercase tracking-wider mb-4">Developer Bypass (Testing Only)</p>
+                    <div className="grid grid-cols-1 gap-2">
+                      <button onClick={() => onLogin({ name: 'Dr. Thomas Tance', role: 'Admin', id: 'ADM-001' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Admin</button>
+                      <button onClick={() => onLogin({ name: 'Prof. Mary Sue', role: 'Faculty', id: 'FAC-882' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Faculty</button>
+                      <button onClick={() => onLogin({ name: 'Dr. Elias Jensen', role: 'Supervisor', id: 'SUP-554' })} className="text-sm bg-gray-100 text-gray-700 py-2 rounded hover:bg-gray-200 transition-colors">Login as Supervisor</button>
                     </div>
                   </div>
                 </div>
-              </main>
-            </div>
-          );
-        };
+                <div className="bg-gray-50 p-4 border-t border-gray-100 flex items-center justify-center gap-2">
+                  <ShieldCheck className="text-green-600" size={16} />
+                  <span className="text-xs text-gray-500 font-medium">Encryption Secure TLS 1.3</span>
+                </div>
+              </div>
+            </main>
+
+            <footer className="py-6 px-12 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 bg-white text-xs text-gray-500 mt-auto">
+              <p>&copy; 2026 UPHSD Institutional Systems. All Rights Reserved.</p>
+              <div className="flex gap-6">
+                <a href="#" className="hover:text-[#800000] uppercase font-bold tracking-wider">Security Policy</a>
+                <a href="#" className="hover:text-[#800000] uppercase font-bold tracking-wider">Terms of Access</a>
+                <a href="#" className="hover:text-[#800000] uppercase font-bold tracking-wider">Contact Support</a>
+              </div>
+            </footer>
+          </div>
+        );
+      };
 
         const TopNav = ({ user, onLogout }) => {
           return (
